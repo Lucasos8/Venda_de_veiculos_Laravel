@@ -1,14 +1,5 @@
-<!DOCTYPE html>
-<html lang="pt_br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Retistrando</title>
-</head>
-<body>
-<header>Veiculando APP</header>
-    <h1>Tela de cadastro</h1>
+@extends('layouts.default')
+@section('content')
 <form action="/cadastroVeiculo" method="POST">
     @csrf
         <input type="hidden" name="id" value="{{isset($veiculo)?$veiculo->id:null}}">
@@ -29,6 +20,7 @@
         <br /> <br />
         <label for="">valor_veiculo</label>
         <input type="text" placeholder="Digite o valor do veiculo." name="valor_veiculo" value="{{isset($veiculo)?$veiculo->valor:''}}"> 
-        <button>Gravar Dados </button>
-</body>
-</html>
+        <br> <br>
+        <button type="submit" class="btn btn-outline-success">Cadastrar</button>
+</form>  
+@stop

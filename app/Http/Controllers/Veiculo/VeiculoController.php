@@ -11,7 +11,8 @@ class VeiculoController extends Controller
 
     public function index()
     {
-        return view('pages.veiculando.principal');
+        $veiculos = Veiculo::all();   
+        return view('pages.veiculando.principal', ['veiculos'=>$veiculos]);
        
     }   
 
@@ -20,15 +21,6 @@ class VeiculoController extends Controller
         return view('pages.veiculando.cadastrandoVeiculos');
        
     }   
-
-
-    public function editandoVeiculo()
-    {
-        $veiculos = Veiculo::all();
-        return view('pages.veiculando.editandoVeiculo', ['veiculos'=>$veiculos]);
-       
-    }   
-
 
     public function save(Request $request) {
         if(isset($request->id)){
@@ -40,6 +32,7 @@ class VeiculoController extends Controller
             "descrição"=>$request->descrição_veiculo,
             "valor"=>$request->valor_veiculo,
             ]);
+            return redirect('/')->with('success', 'Veiculo editado com sucesso!');
         }else{
             $veiculos = new veiculo();
             $veiculos->nome = $request->nome_veiculo;
@@ -49,27 +42,26 @@ class VeiculoController extends Controller
             $veiculos->descrição = $request->descrição_veiculo;
             $veiculos->valor = $request->valor_veiculo;
             if($veiculos->save()){
-                echo"Veiculo cadastrado com sucesso!";
+                //entender os retornos
+                return redirect('/')->with('success', 'Veiculo cadastrado com sucesso!');
             }else{
-                echo"Houve um problema ao cadastrar o veiculo!";
+                return redirect('/')->withErrors('Ocorreu um erro ao salvar o veiculo!');
             }
         }
-        return view('pages.veiculando.principal');
+        //return view('pages.veiculando.principal');
     }
     
     public function edit(Request $request){     
         $id = $request->id;
         $veiculos = Veiculo::where('id', '=', $id)->first();
         return view('pages.Veiculando.cadastrandoVeiculos', ['veiculo' => $veiculos]);
-        return view('pages.veiculando.principal');
 
     }
 
     public function delete(Request $request){
         $id = $request->id;
         Veiculo::destroy($id);
-        return view('pages.veiculando.principal');
-       
+        return view('pages.veiculando.principal');       
     }
 
 }

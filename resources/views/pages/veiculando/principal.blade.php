@@ -1,22 +1,35 @@
-<!DOCTYPE html>
-<html lang="pt_br">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Principal</title>
-</head>
-<body>
-<header>Veiculando APP</header>
-    <h1>Bem vindo </h1>
-
-    <h2>Ao app Veiculando </h2>
+@extends('layouts.default')
+@section('content')
+    <h2>Lista de veiculos</h2>    
     
-
-    
-    <a href="{{  route('Veiculando.cadastrandoVeiculos') }}" class="btn btn-primary btn-fw" id="atualizar">Cadastrar Veiculo</a>
-
-
-<a href="{{  route('veiculando.editandoVeiculo') }}" class="btn btn-primary btn-fw" id="atualizar">Atualizar Dados</a>
-
-</body>
-</html>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <td>nome</td>
+                <td>id</td>                <td>Acessar dados</td>
+                <td>Excluir dados</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach($veiculos as $veiculo)
+            <tr>
+                <td>{{$veiculo->nome}}</td>
+                <td>{{$veiculo->id}}</td>
+                <td><a class="btn btn-outline-primary" href="{{route('veiculando.edit',['id' => $veiculo->id])}}">Editar</a></td>
+                <td>
+                    <form method="POST" action="{{route('veiculando.delete', ['id'=> $veiculo->id])}}">
+                        @csrf
+                        <button type="button" class="btn btn-outline-danger">Delete</button>                   
+                    </form>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>        
+    </table>
+@stop
+@section('pagespecificscripts')
+    <script>
+    </script>
+@stop/script>
+@stop
+lashdla
