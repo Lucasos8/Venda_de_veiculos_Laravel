@@ -1,6 +1,6 @@
 @extends('layouts.default')
 @section('content')
-<form action="/cadastroVeiculo" method="POST">
+<form action="/cadastroVeiculo" method="POST" enctype="multipart/form-data">
     @csrf
         <input type="hidden" name="id" value="{{isset($veiculo)?$veiculo->id:null}}">
         <label for="">nome_veiculo</label>
@@ -20,6 +20,9 @@
         <br /> <br />
         <label for="">valor_veiculo</label>
         <input type="text" placeholder="Digite o valor do veiculo." name="valor_veiculo" value="{{isset($veiculo)?$veiculo->valor:''}}"> 
+        <br> <br>
+        <label for="image">imagem do veiculo:</label>
+        <input type="file" id="image" name= "image" class="form-control-file">
         <br> <br>
         <button type="submit" class="btn btn-outline-success">Cadastrar</button>
 </form>  

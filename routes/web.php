@@ -25,3 +25,4 @@ Route::post('/cadastroVeiculo','App\Http\Controllers\Veiculo\VeiculoController@s
 Route::get('/Edit/{id}','App\Http\Controllers\Veiculo\VeiculoController@edit')->name('veiculando.edit');
 
 Route::post('/delete/{id}','App\Http\Controllers\Veiculo\VeiculoController@delete')->name('veiculando.delete');
+
