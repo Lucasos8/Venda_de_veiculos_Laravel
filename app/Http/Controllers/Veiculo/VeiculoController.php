@@ -41,20 +41,7 @@ class VeiculoController extends Controller
             $veiculos->cilindrada = $request->cilindrada_veiculo;
             $veiculos->descrição = $request->descrição_veiculo;
             $veiculos->valor = $request->valor_veiculo;
-            // image upload 
-            if($request->hasFile('image') && $request->file('image')->isValid()){
-            $requestImage = $request->image;
-
-            $extension = $requestImage->extension();
-
-            $imageName= md5($requestImage->getClientOriginalName() . strtotime("now")) . "." . $extension;
-             
-            $requestImage->move(public_path('app\imagemCarro'), $imageName);
-
-            $veiculos->image = $imageName;    
-
-            }
-
+            
 
             if($veiculos->save()){
                 //entender os retornos

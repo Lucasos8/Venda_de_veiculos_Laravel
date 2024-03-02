@@ -9,6 +9,6 @@ class Veiculo extends Model
 {
     use HasFactory;
     protected $primaryKey='id';
-    protected $fillable = ['id', 'nome', 'ano', 'marca', 'cilindrada', 'cilindrada', 'descrição', 'valor'];
+    protected $fillable = ['id', 'nome', 'ano', 'marca', 'cilindrada', 'cilindrada', 'descrição', 'valor', 'image'];
 
 }
