@@ -1,1 +1,1 @@
-Para praticar e aprender a usar PHP e Laravel, criei um sistema onde eu cadastro um veículo, leio, edito e deleto (CRUD) utilizando o banco de dados MySQL.
+Este é meu primeiro projeto feito em php (8.3), utilizando o Laravel 9, também foi usado banco de dados relacional Mysql, e para um front-end mais simples foi usado Bootstrap  tendo como ambiente de desenvolvimento o docker utilizando-se o repositório laradock para a montagem dos container (imagens utilizadas do laradock foram nginxs e mariadb).
