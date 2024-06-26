@@ -5,6 +5,7 @@
     <table class="table table-striped">
         <thead>
             <tr>
+                <td>Imagem</td>
                 <td>nome</td>
                 <td>cilindrada</td> 
                 <td>marca</td>
@@ -16,8 +17,10 @@
         </thead>
         @csrf
         <tbody>
-            @foreach($veiculos as $veiculo)
-                <tr>
+            @foreach($veiculos as $veiculo)  
+            <tr>
+                <td><img src="{{ asset('storage/' . $veiculo -> image) }}" alt="Imagem do veículo">
+                </td>
                 <td>{{$veiculo->nome}}</td>
                 <td>{{$veiculo->cilindrada}}</td>
                 <td>{{$veiculo->marca}}</td>
@@ -25,12 +28,13 @@
                 <td>{{$veiculo->valor}}</td>
                 <td><a class="btn btn-outline-primary" href="{{route('veiculando.edit',['id' => $veiculo->id])}}">Editar</a></td>
                 <td>
-                    <form method="POST" action="{{route('veiculando.delete', ['id'=> $veiculo->id])}}">
-                        <button type="button" class="btn btn-outline-danger">Delete</button>                   
+                    <form method="POST" action="{{ route('veiculando.delete', ['id' => $veiculo->id]) }}">
+                        @csrf
+                    <button type="submit" class="btn btn-outline-danger">Deletar</button>
                     </form>
-                </td>
+                </td>    
+                
             </tr>
-
             @endforeach
         </tbody>        
     </table>
@@ -38,4 +42,4 @@
 @section('pagespecificscripts')
     <script>
     </script>
-@stop/script>
+@stop  

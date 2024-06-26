@@ -42,17 +42,23 @@ class VeiculoController extends Controller
             $veiculos->descrição = $request->descrição_veiculo;
             $veiculos->valor = $request->valor_veiculo;
             
+            if ($request->hasFile('image')) {
+                $image = $request->file('image')->store();
+                $veiculos->image = $image;
+            }
+    
+
 
             if($veiculos->save()){
-                //entender os retornos
+                
                 return redirect('/')->with('success', 'Veiculo cadastrado com sucesso!');
             }else{
                 return redirect('/')->withErrors('Ocorreu um erro ao salvar o veiculo!');
             }
         }
-        //return view('pages.veiculando.principal');
+       
     }
-  
+    
     public function edit(Request $request){     
         $id = $request->id;
         $veiculos = Veiculo::where('id', '=', $id)->first();
@@ -63,7 +69,9 @@ class VeiculoController extends Controller
     public function delete(Request $request){
         $id = $request->id;
         Veiculo::destroy($id);
-        return view('pages.veiculando.principal');       
+       
+        return redirect('/')->with('success', 'Veiculo deletado com sucesso!');
+       
     }
    
 }
