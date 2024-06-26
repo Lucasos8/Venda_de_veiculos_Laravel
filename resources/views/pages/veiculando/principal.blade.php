@@ -6,12 +6,12 @@
         <thead>
             <tr>
                 <td>Imagem</td>
-                <td>nome</td>
+                <td>Dados</td>
                 <td>cilindrada</td> 
                 <td>marca</td>
                 <td>ano</td>
                 <td>valor</td>                                 
-                <td>Acessar dados</td>
+                <td>Editar dados</td>
                 <td>Excluir dados</td>
             </tr>
         </thead>
@@ -19,9 +19,8 @@
         <tbody>
             @foreach($veiculos as $veiculo)  
             <tr>
-                <td><img src="{{ asset('storage/' . $veiculo -> image) }}" alt="Imagem do veículo">
-                </td>
-                <td>{{$veiculo->nome}}</td>
+                <td><img src="{{ asset('storage/' . $veiculo -> image) }}" alt="Imagem do veículo" width="175px" height="125px"> </td>
+                <td>{{$veiculo->nome}} <br> {{$veiculo->descrição}} </td>
                 <td>{{$veiculo->cilindrada}}</td>
                 <td>{{$veiculo->marca}}</td>
                 <td>{{$veiculo->ano}}</td>
@@ -43,3 +42,4 @@
     <script>
     </script>
 @stop  
+
